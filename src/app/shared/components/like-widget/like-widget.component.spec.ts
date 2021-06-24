@@ -17,41 +17,44 @@ describe(LikeWidgetComponent.name, () => {
         UniqueIdService
       ],
       imports: [
-        FontAwesomeModule
+        FontAwesomeModule,
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LikeWidgetComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it(`should create ${LikeWidgetComponent.name}`, () => {
     expect(component).toBeTruthy();
-    const instance = fixture.componentInstance;
-    expect(instance).toBeTruthy();
   });
 
   it('should auto-generate ID during ngOnInit when (@Input id) is not assigned', () => {
+    fixture.detectChanges();
     expect(component.id).toBeTruthy();
   });
 
   it('should not auto-generate ID during ngOnInit when (@Input id) is assigned', () => {
-    component.id = 'someId'
-    expect(component.id).toBe('someId');
+    const someId = 'someId';
+    component.id = someId;
+    fixture.detectChanges();
+    expect(component.id).toBe(someId);
   });
 
-  it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) called`, done => {
-    fixture.detectChanges();
-    component.liked.subscribe(() => {
-      expect(true).toBeTrue();
-    });
-    component.like();
-    done();
-  });
+
+  // it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) called`, done => {
+  //   fixture.detectChanges();
+  //   component.liked.subscribe(() => {
+  //     expect(true).toBeTrue();
+  //   });
+  //   component.like();
+  //   done();
+  // });
 
   it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) when called`, () => {
-    spyOn(component.liked,'emit');
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
     component.like();
     expect(component.liked.emit).toHaveBeenCalled();
   });
