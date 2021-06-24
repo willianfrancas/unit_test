@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 91.0.4472.114 (Windows 10)" package="" timestamp="2021-06-23T23:44:08" id="0" hostname="DESKTOP-J8NKP9Q" tests="9" errors="0" failures="0" time="0.058">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/91.0.4472.114 Safari/537.36"/>
+  </properties>
+  <testcase name="LikeWidgetComponent should create LikeWidgetComponent" time="0.037" classname="Chrome_Headless_91_0_4472_114_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent should auto-generate ID during ngOnInit when (@Input id) is not assigned" time="0.004" classname="Chrome_Headless_91_0_4472_114_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent should not auto-generate ID during ngOnInit when (@Input id) is assigned" time="0.004" classname="Chrome_Headless_91_0_4472_114_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent #like should trigger (@Output liked) called" time="0.006" classname="Chrome_Headless_91_0_4472_114_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent #like should trigger (@Output liked) when called" time="0.004" classname="Chrome_Headless_91_0_4472_114_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="UniqueIdService #generateUniqueIdsWithPrefix&#xA;      should generate id when called with prefix" time="0" classname="Chrome_Headless_91_0_4472_114_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #generateUniqueIdsWithPrefix&#xA;      should not generate duplicate id" time="0" classname="Chrome_Headless_91_0_4472_114_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #getNumberOfGenerateUniqueIds&#xA;      should return the number of generateIds when called" time="0" classname="Chrome_Headless_91_0_4472_114_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #getNumberOfGenerateUniqueIds&#xA;      should throw when call with empty" time="0.003" classname="Chrome_Headless_91_0_4472_114_(Windows_10).UniqueIdService"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
