@@ -22,7 +22,7 @@ export class PhotoFrameComponent implements OnInit {
 
   ngOnInit(): void {
     this.debounceSubject.asObservable()
-      .pipe(debounceTime(300))
+      .pipe(debounceTime(500))
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => this.liked.emit());
   }
