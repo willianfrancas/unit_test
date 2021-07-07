@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PhotoModel } from './shared/components/photo-board/photo.interface';
+import { PhotoBoardService } from './shared/components/photo-board/services/photo-board.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +10,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular testing';
+  public photos$: Observable<PhotoModel[]>;
 
-  public likes = 0;
-
-  like(): void {
-    this.likes++;
+  constructor(private photosService: PhotoBoardService) {
   }
+
+  ngOnInit() {
+  this.photos$ = this.photosService.getPhotos();
+}
 }
