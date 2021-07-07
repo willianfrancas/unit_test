@@ -3,27 +3,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 
 import { LikeWidgetComponent } from './like-widget.component';
+import { LikeWidgetModule } from './like-widget.module';
 
 describe(LikeWidgetComponent.name, () => {
-  let component: LikeWidgetComponent;
-  let fixture: ComponentFixture<LikeWidgetComponent>;
+  let fixture: ComponentFixture<LikeWidgetComponent> = null;
+  let component: LikeWidgetComponent = null;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        LikeWidgetComponent
-      ],
-      providers: [
-        UniqueIdService
-      ],
       imports: [
-        FontAwesomeModule,
+        LikeWidgetModule,
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LikeWidgetComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
+
   });
 
   it(`should create ${LikeWidgetComponent.name}`, () => {
@@ -42,20 +37,67 @@ describe(LikeWidgetComponent.name, () => {
     expect(component.id).toBe(someId);
   });
 
-
-  // it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) called`, done => {
-  //   fixture.detectChanges();
-  //   component.liked.subscribe(() => {
-  //     expect(true).toBeTrue();
-  //   });
-  //   component.like();
-  //   done();
-  // });
+  it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) when called`, () => {
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.like();
+    expect(component.liked.emit).toHaveBeenCalled();
+  });
 
   it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) when called`, () => {
     spyOn(component.liked, 'emit');
     fixture.detectChanges();
     component.like();
     expect(component.liked.emit).toHaveBeenCalled();
+  });
+
+  it(`(D) should display number of likes when clicked`, done => {
+
+    fixture.detectChanges();
+
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainerEl: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    likeWidgetContainerEl.click();
+
+  });
+
+  it(`(D) should display number of likes when ENTER key is pressed`, done => {
+
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainerEl: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    const event = new KeyboardEvent('keyup', { key: 'Enter' });
+    likeWidgetContainerEl.dispatchEvent(event);
+
+  });
+
+  it(`(D) should display number of likes when space key is pressed`, done => {
+
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
+    });
+    const likeWidgetContainerEl: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    const event = new KeyboardEvent('keyup', { key: 'Space' });
+    likeWidgetContainerEl.dispatchEvent(event);
   });
 });
