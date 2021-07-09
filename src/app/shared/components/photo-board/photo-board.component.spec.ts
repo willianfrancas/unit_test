@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotoBoardComponent } from './photo-board.component';
 import { PhotoBoardModule } from './photo-board.module';
 import { PhotoModel } from './photo.interface';
-// import { buildPhotoList } from './test/build-photo-list';
+import { buildPhotoList } from './test/build-photo-list';
 
 describe(PhotoBoardComponent.name, () => {
   let fixture: ComponentFixture<PhotoBoardComponent>;
@@ -58,18 +58,6 @@ describe(PhotoBoardComponent.name, () => {
       .toBe(4);
   });
 });
-
-function buildPhotoList(): PhotoModel[] {
-  const photos: PhotoModel[] = [];
-  for (let i = 0; i < 16; i++) {
-    photos.push({
-      id: i + 1,
-      url: 'someUrl',
-      description: 'Some_Description',
-    });
-  }
-  return photos;
-}
 
 @Component({
   template: `<app-photo-board
